@@ -12,6 +12,14 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lowercase-keys": "^2.0.0",
+    "mapkeys": "^0.1.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4",
+    "oracledb": "^5.0.0",
+    "request": "^2.81.0",
+    "request-json": "^0.6.5",
+    "rxjs": "^6.6.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {

@@ -24,14 +24,11 @@ export default class Server {
     }
 
     private escucharSockets(){
-        console.log("Escuchando conexiones");
         this.io.on('connection',cliente=>{
-            console.log('Cliente conectado');
-            //Mensajes
-            socket.mensaje(cliente,this.io);
-            //Desconectar
             socket.desconectar(cliente);
-        })
+            socket.altaUsuario(cliente,this.io);
+            socket.visita(cliente,this.io);
+        });
     }
 
     start(callback: any) {

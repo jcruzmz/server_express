@@ -1,17 +1,27 @@
 import { Socket } from 'socket.io';
 import socketIO from 'socket.io';
+import http  from 'http';
+import { getUsuarios } from '../services/user.service';
+import { getVisitas } from '../services/visitas.service';
 //Logica de los sockets
 
 //Escuchar desconección
 export const desconectar = (cliente:Socket)=>{
     cliente.on('disconnect',()=>{
-        console.log('Cliente desconectado');
+
     })
 }
 //Escuchar mensajes
-export const mensaje = (cliente: Socket, io:socketIO.Server)=>{
-    cliente.on('mensaje',(payload:{de:string, cuerpo:string})=>{
+export const altaUsuario = (cliente: Socket, io:socketIO.Server)=>{
+    cliente.on('alta-usuario',(payload:{mensaje:string})=>{
         console.log('Mensaje recibido',payload);
-        io.emit('mensaje-nuevo',payload);
+        getUsuarios(io,payload.mensaje);
+    })
+}
+
+export const visita = (cliente: Socket, io:socketIO.Server)=>{
+    cliente.on('visitas',(payload:{token:string})=>{
+        console.log('Mensaje recibido',payload);
+        getVisitas(io,payload.token);
     })
 }
