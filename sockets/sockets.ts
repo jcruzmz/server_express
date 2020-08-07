@@ -22,7 +22,8 @@ export const desconectar = (cliente:Socket)=>{
 
 export const login = (cliente:Socket,io:socketIO.Server)=>{
     cliente.on('login',(payload:{user:any,token:string})=>{
-        let usuario = new User(cliente.id,payload.user.username,payload.user.nombre,payload.user.roles,payload.token);
+        console.log(cliente);
+        let usuario = new User(cliente.id,payload.user.username,payload.user.nombre,payload.user.roles,payload.token,cliente.handshake.address);
         clientesConectados.add(usuario);
         clientesConectados.showAll();
     })
@@ -38,7 +39,7 @@ export const logout = (cliente:Socket)=>{
 
 export const reconection = (cliente:Socket,io:socketIO.Server)=>{
     cliente.on('reconect',(payload:{user:any,token:string})=>{
-        let usuario = new User(cliente.id,payload.user.username,payload.user.nombre,payload.user.roles,payload.token);
+        let usuario = new User(cliente.id,payload.user.username,payload.user.nombre,payload.user.roles,payload.token,cliente.handshake.address);
         clientesConectados.add(usuario);
         clientesConectados.showAll();
     })
