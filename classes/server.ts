@@ -25,7 +25,6 @@ export default class Server {
 
     private escucharSockets(){
         this.io.on('connection',cliente=>{
-            console.log("cliente conectado",cliente.id);
             socket.reconection(cliente,this.io);
             socket.login(cliente,this.io);
             socket.logout(cliente);

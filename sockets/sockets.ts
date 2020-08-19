@@ -13,7 +13,6 @@ export const clientesConectados = new Clients();
 //Escuchar desconección
 export const desconectar = (cliente:Socket)=>{
     cliente.on('disconnect',()=>{
-        console.log('cliente desconectado', cliente.id);
         let user = clientesConectados.findById(cliente.id);
         user !== undefined ? clientesConectados.delete(user):null;
         clientesConectados.showAll();
@@ -22,7 +21,6 @@ export const desconectar = (cliente:Socket)=>{
 
 export const login = (cliente:Socket,io:socketIO.Server)=>{
     cliente.on('login',(payload:{user:any,token:string})=>{
-        console.log(cliente);
         let usuario = new User(cliente.id,payload.user.username,payload.user.nombre,payload.user.roles,payload.token,cliente.handshake.address);
         clientesConectados.add(usuario);
         clientesConectados.showAll();

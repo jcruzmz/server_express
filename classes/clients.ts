@@ -19,6 +19,5 @@ export class Clients{
     }
 
     public showAll(){
-        console.log(ClientsOnline);
     }
 }
